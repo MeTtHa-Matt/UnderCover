@@ -1,0 +1,1050 @@
+/* =========================================================
+   UNDERCOVER — feuille de style
+   Direction artistique : mur d'enquête, pièces à conviction
+   scotchées de travers, papier qui a du grain. Rien n'est
+   parfaitement carré : chaque fiche a été découpée, tamponnée
+   ou pincée à la main.
+   ========================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@400;500;600;700;800;900&family=Caveat:wght@500;700&display=swap");
+
+/* ---------- 0. Tokens ---------- */
+:root {
+  /* surfaces */
+  --ink: #07090e;
+  --ink-deep: #030407;
+  --paper: #12161f;
+  --paper-raised: #171d2b;
+  --paper-hi: #1c2334;
+  --line: #232a3c;
+  --line-strong: #37415a;
+  --line-hair: rgba(234, 231, 220, 0.07);
+
+  /* papier crème (bande polaroid) */
+  --cream: #d9d0b6;
+  --cream-dim: #b6ab8a;
+  --cream-ink: #5b5236;
+
+  /* texte */
+  --text: #eae6d9;
+  --text-dim: #8890a6;
+  --text-faint: #4e566d;
+
+  /* accents */
+  --amber: #d9a441;
+  --amber-hi: #ecc06c;
+  --amber-deep: #93700f;
+  --amber-ink: #1b1204;
+  --red: #c1443b;
+  --red-hi: #de6459;
+  --red-deep: #7a2b25;
+  --green: #57a06f;
+  --green-deep: #2f5b3d;
+
+  /* rôles */
+  --role-civil: var(--green);
+  --role-undercover: var(--amber);
+  --role-mrwhite: var(--red);
+
+  /* espacement (base 4px) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+
+  /* formes "découpées à la main" — jamais un simple rectangle */
+  --radius-card: 22px 7px 16px 10px;
+  --radius-card-alt: 8px 20px 9px 16px;
+  --radius-chip: 10px 4px 9px 4px;
+
+  /* profondeur */
+  --shadow-card:
+    0 1px 0 rgba(255, 255, 255, 0.03) inset,
+    0 16px 34px -16px rgba(0, 0, 0, 0.75), 0 3px 8px -2px rgba(0, 0, 0, 0.6);
+  --shadow-btn:
+    0 1px 0 rgba(255, 255, 255, 0.25) inset, 0 -2px 0 rgba(0, 0, 0, 0.18) inset,
+    0 10px 22px -8px rgba(217, 164, 65, 0.45);
+  --shadow-btn-active:
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 4px 10px -4px rgba(217, 164, 65, 0.35);
+
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='170' height='170'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --tape: repeating-linear-gradient(
+    52deg,
+    rgba(217, 164, 65, 0.42) 0 5px,
+    rgba(170, 128, 46, 0.32) 5px 10px
+  );
+
+  /* typo */
+  --font-display: "Space Mono", "Courier New", monospace;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-hand: "Caveat", cursive;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+
+  color-scheme: dark;
+}
+
+/* ---------- 1. Reset ---------- */
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  margin: 0;
+}
+p {
+  margin: 0 0 8px;
+}
+button,
+input {
+  font-family: inherit;
+  color: inherit;
+}
+::selection {
+  background: var(--amber);
+  color: var(--amber-ink);
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- 2. Atmosphère de fond ---------- */
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 16px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(
+      ellipse 900px 480px at 18% -8%,
+      rgba(217, 164, 65, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 700px 500px at 100% 15%,
+      rgba(193, 68, 59, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse 1100px 700px at 50% 110%,
+      #10141e 0%,
+      var(--ink-deep) 60%
+    ),
+    var(--ink);
+  overflow-x: hidden;
+}
+
+/* grain de papier + trame croisée très légère, fixes sur tout le viewport */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    var(--grain),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.014) 0 2px,
+      transparent 2px 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.01) 0 2px,
+      transparent 2px 6px
+    );
+  opacity: 0.075;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* balayage de scanner très discret */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -10% 0 auto 0;
+  height: 3px;
+  background: linear-gradient(
+    180deg,
+    rgba(217, 164, 65, 0),
+    rgba(217, 164, 65, 0.16),
+    rgba(217, 164, 65, 0)
+  );
+  pointer-events: none;
+  z-index: 1;
+  animation: scan-sweep 9s linear infinite;
+}
+@keyframes scan-sweep {
+  0% {
+    transform: translateY(-10vh);
+  }
+  100% {
+    transform: translateY(120vh);
+  }
+}
+
+/* ---------- 3. Layout ---------- */
+.wrap {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 460px);
+  max-width: 460px;
+  margin: 0 auto;
+  padding: max(22px, env(safe-area-inset-top)) 16px
+    max(32px, env(safe-area-inset-bottom)) 16px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.wrap > h1 {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: clamp(1.5rem, 5.6vw, 1.85rem);
+  letter-spacing: 0.01em;
+  padding: 2px 2px 22px;
+  margin-bottom: 2px;
+  border-bottom: 1px solid var(--line-hair);
+  position: relative;
+}
+.wrap > h1 span {
+  color: var(--amber-hi);
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-shadow: 1px 0 0 rgba(147, 112, 15, 0.55);
+}
+/* petite note écrite à la main, légèrement de travers, sous le titre */
+.wrap > h1::after {
+  content: "affaire n\00B0 07 — en cours";
+  position: absolute;
+  left: 1px;
+  bottom: -6px;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--amber);
+  opacity: 0.85;
+  transform: rotate(-2deg);
+  white-space: nowrap;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  position: relative;
+  z-index: 2;
+  min-width: 0;
+}
+
+/* ---------- 4. Cartes — jamais un rectangle propre ---------- */
+.card {
+  position: relative;
+  background: linear-gradient(180deg, var(--paper-hi), var(--paper) 40%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: 22px 19px 20px;
+  box-shadow: var(--shadow-card);
+  transform: rotate(-0.5deg);
+  overflow: hidden;
+}
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* une carte sur deux penche de l'autre côté, pour casser l'alignement */
+.card.error-card {
+  border-radius: var(--radius-card-alt);
+  transform: rotate(0.7deg);
+}
+details.card {
+  border-radius: var(--radius-card-alt);
+  transform: rotate(0.35deg);
+}
+
+.center-text {
+  text-align: center;
+}
+
+.error-card {
+  border-color: var(--red-deep);
+  background: linear-gradient(
+    180deg,
+    rgba(193, 68, 59, 0.14),
+    var(--paper) 60%
+  );
+  padding: 16px 18px;
+}
+.error-row {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.error-row .icon {
+  font-size: 1.2rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.error-row .msg {
+  color: var(--text);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+/* ---------- 5. Formulaire (setup) ---------- */
+label {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber);
+  opacity: 0.85;
+  margin: 18px 0 7px;
+}
+label:first-child {
+  margin-top: 0;
+}
+
+input[type="number"],
+input[type="text"] {
+  width: 100%;
+  background: var(--ink);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-chip);
+  padding: 13px 13px;
+  font-size: 1rem;
+  font-family: var(--font-display);
+  color: var(--text);
+  transition:
+    border-color 0.15s var(--ease-out),
+    background 0.15s var(--ease-out),
+    box-shadow 0.15s var(--ease-out);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.02) inset,
+    0 2px 6px rgba(0, 0, 0, 0.35) inset;
+}
+input[type="number"]::placeholder,
+input[type="text"]::placeholder {
+  color: var(--text-faint);
+  font-family: var(--font-body);
+}
+input[type="number"]:hover,
+input[type="text"]:hover {
+  border-color: var(--line-strong);
+  filter: brightness(1.08);
+}
+input[type="number"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--amber);
+  box-shadow: 0 0 0 3px rgba(217, 164, 65, 0.14);
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 0.5;
+  filter: invert(1);
+}
+
+.row3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+.row3 > div > label {
+  margin-top: 0;
+}
+
+.names-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+.names-list input {
+  padding: 11px 13px;
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  border-radius: 8px 5px 8px 5px;
+}
+
+#roleDefaults {
+  font-family: var(--font-hand);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  color: var(--text-dim);
+  border-left: 2px dashed var(--line-strong);
+  padding-left: 11px;
+}
+
+/* ---------- 6. Boutons — des laissez-passer tamponnés, pas des pilules glossy ---------- */
+.btn {
+  --fold: 15px;
+  display: block;
+  width: 100%;
+  border: 1px solid var(--amber-deep);
+  border-radius: 3px 13px 3px 13px;
+  padding: 16px 32px 16px 18px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  color: var(--amber-ink);
+  background-color: var(--amber);
+  background-image:
+    var(--grain),
+    linear-gradient(165deg, rgba(255, 255, 255, 0.2), transparent 45%);
+  background-blend-mode: overlay, normal;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.3) inset,
+    0 12px 22px -12px rgba(0, 0, 0, 0.6);
+  transition:
+    transform 0.08s var(--ease-out),
+    box-shadow 0.08s var(--ease-out),
+    filter 0.1s linear;
+  margin-top: 18px;
+}
+.btn:first-child {
+  margin-top: 0;
+}
+
+/* coin corné en haut à droite — la page qu'on a repliée pour marquer sa place */
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: var(--fold);
+  height: var(--fold);
+  background: linear-gradient(135deg, transparent 50%, var(--ink-deep) 51%);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.4);
+}
+
+.btn:hover {
+  filter: brightness(1.06);
+}
+.btn:active {
+  transform: scale(0.965);
+  filter: brightness(0.92);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 4px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+.btn.secondary {
+  color: var(--text);
+  background-color: var(--paper-raised);
+  background-image: var(--grain);
+  background-blend-mode: overlay;
+  border: 1px dashed var(--line-strong);
+  box-shadow: none;
+}
+.btn.secondary::after {
+  background: linear-gradient(135deg, transparent 50%, var(--ink) 51%);
+  box-shadow: -2px 2px 5px rgba(0, 0, 0, 0.35);
+}
+.btn.secondary:hover {
+  border-color: var(--amber);
+  color: var(--amber-hi);
+}
+.btn.secondary:active {
+  transform: scale(0.965);
+  filter: brightness(1.1);
+}
+
+/* pas de coin corné ici : action mineure, traitement plus discret — un talon qu'on détache */
+.btn.ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: none;
+  border-radius: 0;
+  border-bottom: 1.5px dashed var(--line-strong);
+  box-shadow: none;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  padding: 13px 4px;
+}
+.btn.ghost::after {
+  content: none;
+}
+.btn.ghost:hover {
+  color: var(--red-hi);
+  border-color: var(--red-deep);
+}
+.btn.ghost:active {
+  transform: translateY(1px);
+}
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 7, 18, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 999;
+}
+.modal-card {
+  width: min(100%, 420px);
+  background: linear-gradient(180deg, var(--paper-hi), var(--paper) 45%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: 24px 22px 18px;
+  text-align: center;
+  position: relative;
+  transform: rotate(-0.35deg);
+}
+.modal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.06;
+  pointer-events: none;
+}
+.modal-title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber-hi);
+  margin-bottom: 14px;
+}
+.modal-message {
+  color: var(--text);
+  font-size: 0.98rem;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+.modal-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.modal-btn {
+  margin-top: 0;
+  min-width: 0;
+}
+.modal-btn-cancel {
+  background-color: var(--paper-raised);
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+.modal-btn-cancel:hover {
+  color: var(--amber-hi);
+}
+.modal-btn-confirm {
+  background-color: var(--red);
+  color: var(--text);
+  border-color: var(--red-deep);
+}
+.modal-btn-confirm:hover {
+  filter: brightness(1.05);
+}
+
+/* ---------- 7. Règles (details/summary) ---------- */
+details.card {
+  padding: 16px 18px;
+}
+details.card summary {
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  list-style: none;
+}
+details.card summary::-webkit-details-marker {
+  display: none;
+}
+details.card summary::before {
+  content: "▸ ";
+  color: var(--amber);
+}
+details.card[open] summary {
+  color: var(--text);
+  margin-bottom: 10px;
+}
+details.card[open] summary::before {
+  content: "▾ ";
+}
+.rules {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+.rules b {
+  color: var(--amber-hi);
+  font-weight: 700;
+}
+
+/* ---------- 8. Classement ---------- */
+.final-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.final-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 11px 2px;
+  border-bottom: 1px dashed var(--line);
+  font-size: 0.92rem;
+}
+.final-list li:first-child {
+  padding-top: 2px;
+}
+.final-list li:last-child {
+  border-bottom: none;
+}
+.final-list li:first-child b {
+  color: var(--amber-hi);
+  text-shadow: 0 0 12px rgba(217, 164, 65, 0.4);
+}
+.final-list b {
+  font-family: var(--font-display);
+  color: var(--amber);
+  font-size: 1rem;
+}
+
+/* ---------- 9. Écran révélation — la pièce à conviction ---------- */
+.progress {
+  align-self: center;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  padding: 6px 16px;
+  background: var(--paper);
+}
+
+.pass-icon {
+  font-size: 2.1rem;
+  text-align: center;
+  margin-bottom: 2px;
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.5));
+}
+
+.player-name-big {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 6vw, 1.7rem);
+  font-weight: 700;
+  text-align: center;
+  margin: 4px 0 22px;
+  color: var(--text);
+  letter-spacing: 0.01em;
+}
+
+/* la fiche façon polaroid : bande crème, scotch, légende manuscrite */
+.reveal-card {
+  position: relative;
+  border-radius: 4px 10px 5px 12px;
+  padding: 30px 20px 58px;
+  text-align: center;
+  overflow: hidden;
+  transform: rotate(-1.7deg);
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-shadow:
+    0 22px 40px -18px rgba(0, 0, 0, 0.85),
+    0 2px 0 rgba(0, 0, 0, 0.3);
+  animation: guard-pulse 3s ease-in-out infinite;
+  background:
+    /* bande crème du bas, comme un vrai polaroid */
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 79%,
+      var(--cream) 79%,
+      var(--cream) 100%
+    ),
+    /* petit morceau de scotch en haut */ var(--tape) top -4px center / 74px
+      24px no-repeat,
+    /* zone photo sombre */
+    linear-gradient(160deg, #0b0e15, var(--ink-deep) 70%);
+}
+.reveal-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 21% 0;
+  background-image: var(--grain);
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+/* légende manuscrite dans la bande crème */
+.reveal-card::after {
+  content: "pièce à conviction";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 13px;
+  text-align: center;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--cream-ink);
+  transform: rotate(-1deg);
+  pointer-events: none;
+}
+
+.reveal-role-tag {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 12px;
+}
+.reveal-word {
+  position: relative;
+  display: inline-block;
+  max-width: 100%;
+  min-width: 8ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 7.5vw, 2.2rem);
+  font-weight: 700;
+  color: var(--amber-hi);
+  letter-spacing: 0.03em;
+  word-break: break-word;
+  white-space: normal;
+  text-shadow: 0 0 26px rgba(217, 164, 65, 0.35);
+}
+
+@keyframes guard-pulse {
+  0%,
+  100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.035);
+  }
+}
+
+.tap-hint {
+  text-align: center;
+  color: var(--amber);
+  opacity: 0.85;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-top: 6px;
+  transform: rotate(-1deg);
+  animation: hint-fade 1.9s ease-in-out infinite;
+}
+@keyframes hint-fade {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+#revealBtn {
+  margin-top: var(--s-5);
+}
+
+/* ---------- 10. Vote ---------- */
+.status-bar {
+  display: flex;
+  gap: 10px;
+}
+.status-bar > div {
+  flex: 1;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-chip);
+  padding: 11px 12px;
+  font-size: 0.84rem;
+  color: var(--text-dim);
+  text-align: center;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03) inset;
+}
+.status-bar b {
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.players-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.player-btn {
+  position: relative;
+  display: block;
+  background: linear-gradient(180deg, var(--paper-hi), var(--paper-raised));
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-chip);
+  padding: 17px 10px 15px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text);
+  cursor: pointer;
+  overflow: hidden;
+  transition:
+    border-color 0.15s var(--ease-out),
+    transform 0.12s var(--ease-out),
+    background 0.15s var(--ease-out),
+    box-shadow 0.15s var(--ease-out);
+}
+/* les fiches alternent leur inclinaison, comme punaisées de travers */
+.player-btn:nth-child(odd) {
+  transform: rotate(-1.4deg);
+}
+.player-btn:nth-child(even) {
+  transform: rotate(1.1deg);
+  border-radius: 4px 10px 4px 9px;
+}
+.player-btn[data-pid]::first-letter {
+  color: var(--amber-hi);
+  font-size: 1.12em;
+}
+.player-btn[data-pid]:hover {
+  border-color: var(--amber);
+  background: linear-gradient(180deg, var(--paper-hi), #1f2740);
+  box-shadow: 0 8px 18px -10px rgba(217, 164, 65, 0.35);
+}
+.player-btn[data-pid]:active {
+  transform: rotate(0deg) translateY(1px) scale(0.97);
+}
+
+.player-btn.dead {
+  color: var(--text-faint);
+  border-style: dashed;
+  cursor: default;
+  background: var(--ink);
+}
+.player-btn.dead::first-letter {
+  color: var(--text-faint);
+}
+.player-btn.dead::after {
+  content: "ÉLIMINÉ";
+  position: absolute;
+  left: -20%;
+  top: 40%;
+  width: 140%;
+  transform: rotate(-8deg);
+  background: linear-gradient(180deg, var(--red-hi), var(--red-deep));
+  color: #f7ece9;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.6rem;
+  letter-spacing: 0.16em;
+  text-align: center;
+  padding: 3px 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.45);
+  clip-path: polygon(0 12%, 100% 0, 100% 88%, 0 100%);
+}
+
+/* ---------- 11. Résultat & rôles ---------- */
+.result-role {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  padding: 6px 16px;
+  margin-top: 16px;
+  border: 1.5px dashed currentColor;
+  border-radius: 8px 3px 8px 3px;
+  position: relative;
+}
+.result-role::before {
+  content: "";
+  position: absolute;
+  inset: 3px;
+  border: 1px solid currentColor;
+  opacity: 0.3;
+  border-radius: 2px;
+}
+.role-civil {
+  color: var(--role-civil);
+  background: rgba(87, 160, 111, 0.08);
+  transform: rotate(-2.4deg);
+}
+.role-undercover {
+  color: var(--role-undercover);
+  background: rgba(217, 164, 65, 0.08);
+  transform: rotate(1.8deg);
+}
+.role-mrwhite {
+  color: var(--role-mrwhite);
+  background: rgba(193, 68, 59, 0.08);
+  transform: rotate(-1.3deg);
+}
+
+.word-hint {
+  color: var(--text-dim);
+  font-size: 0.88rem;
+}
+.word-hint b {
+  color: var(--amber-hi);
+  font-family: var(--font-display);
+}
+
+.win-banner {
+  display: block;
+  font-family: var(--font-hand);
+  font-weight: 700;
+  font-size: 1.7rem;
+  color: var(--amber-hi);
+  letter-spacing: 0.01em;
+  padding: 12px 10px 14px;
+  margin-top: 8px;
+  border-top: 1px dashed var(--line-strong);
+  border-bottom: 1px dashed var(--line-strong);
+  text-shadow: 0 0 20px rgba(217, 164, 65, 0.3);
+  transform: rotate(-0.8deg);
+}
+
+/* formulaire de la devinette Mr White */
+#guessForm {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+#guessForm .btn {
+  margin-top: 0;
+}
+
+/* ---------- 12. Barre de défilement (webkit) ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-strong);
+  border-radius: 6px;
+  border: 2px solid var(--ink);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--amber-deep);
+}
+
+/* ---------- 13. Responsive : tablette / desktop ---------- */
+@media (min-width: 560px) {
+  .wrap {
+    max-width: 580px;
+    padding-top: 40px;
+    gap: var(--s-5);
+  }
+  .wrap > h1 {
+    font-size: 2.05rem;
+    padding-bottom: 26px;
+  }
+  .card {
+    padding: 28px 30px 26px;
+  }
+  .names-list {
+    grid-template-columns: 1fr 1fr;
+  }
+  .players-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .player-btn {
+    padding: 20px 12px 18px;
+  }
+  .btn {
+    width: auto;
+    display: inline-block;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  form .btn,
+  #guessForm .btn,
+  .btn[id] {
+    width: 100%;
+    display: block;
+  }
+  .reveal-word {
+    font-size: 2.5rem;
+  }
+  .reveal-card {
+    padding: 40px 28px 64px;
+  }
+}
+
+@media (min-width: 860px) {
+  .players-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- 14. Accessibilité : mouvement réduit ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal-card,
+  .tap-hint,
+  body::after {
+    animation: none !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+  }
+}
