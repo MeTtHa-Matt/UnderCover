@@ -1,8 +1,10 @@
 {
+  "id": "./",
   "name": "Undercover — Le jeu du mot secret",
   "short_name": "Undercover",
   "description": "Jeu de société à jouer à plusieurs sur un seul téléphone, 100% hors ligne.",
-  "start_url": "./index.html",
+  "lang": "fr",
+  "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
