@@ -109,6 +109,7 @@ button,
 input {
   font-family: inherit;
   color: inherit;
+  -webkit-tap-highlight-color: transparent;
 }
 ::selection {
   background: var(--amber);
@@ -117,10 +118,15 @@ input {
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
 summary:focus-visible {
-  outline: 2px solid var(--amber);
+  outline: 2px dashed var(--amber-hi);
   outline-offset: 3px;
-  border-radius: 4px;
+  border-radius: var(--radius-chip);
+  box-shadow:
+    0 0 0 4px rgba(217, 164, 65, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.12) inset;
 }
 
 /* ---------- 2. Atmosphère de fond ---------- */
@@ -258,6 +264,19 @@ body::after {
   gap: var(--s-4);
   position: relative;
   z-index: 2;
+  animation: fade-in-up 0.35s var(--ease-out);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
   min-width: 0;
 }
 
@@ -265,6 +284,7 @@ body::after {
 .card {
   position: relative;
   background: linear-gradient(180deg, var(--paper-hi), var(--paper) 40%);
+  animation: card-pop 0.28s var(--ease-out);
   border: 1px solid var(--line);
   border-radius: var(--radius-card);
   padding: 22px 19px 20px;
@@ -496,25 +516,33 @@ input[type="number"]::-webkit-outer-spin-button {
 
 /* pas de coin corné ici : action mineure, traitement plus discret — un talon qu'on détache */
 .btn.ghost {
-  background: transparent;
+  background: linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.015));
   color: var(--text-dim);
-  border: none;
-  border-radius: 0;
-  border-bottom: 1.5px dashed var(--line-strong);
-  box-shadow: none;
+  border: 1px dashed var(--line-strong);
+  border-radius: 8px 4px 8px 4px;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.03) inset;
   font-weight: 700;
-  letter-spacing: 0.09em;
-  padding: 13px 4px;
+  letter-spacing: 0.08em;
+  padding: 13px 14px;
+  margin-top: 16px;
 }
 .btn.ghost::after {
-  content: none;
+  content: "✕";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.95rem;
+  color: var(--red-hi);
+  opacity: 0.9;
 }
 .btn.ghost:hover {
   color: var(--red-hi);
   border-color: var(--red-deep);
+  background: linear-gradient(180deg, rgba(193,68,59,0.12), rgba(255,255,255,0.02));
 }
 .btn.ghost:active {
-  transform: translateY(1px);
+  transform: translateY(1px) scale(0.99);
 }
 
 .modal-overlay {
@@ -626,6 +654,30 @@ details.card[open] summary::before {
 }
 
 /* ---------- 8. Classement ---------- */
+.section-title {
+  font-family: var(--font-display);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--amber-hi);
+  margin-bottom: 12px;
+  padding: 0 2px 8px;
+  border-bottom: 1px dashed var(--line-strong);
+}
+.actions-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 14px;
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  background: rgba(7, 9, 14, 0.4);
+}
+.actions-stack .btn {
+  margin-top: 0;
+}
 .final-list {
   list-style: none;
   margin: 0;
@@ -641,6 +693,20 @@ details.card[open] summary::before {
   border-bottom: 1px dashed var(--line);
   font-size: 0.92rem;
 }
+
+section.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  border: 1px solid var(--line-strong);
+  border-radius: 14px 6px 12px 8px;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.04) inset,
+    0 16px 30px -18px rgba(0, 0, 0, 0.8);
+  transform: rotate(-0.3deg);
+}
+
+section.card:nth-of-type(2n) {
+  transform: rotate(0.25deg);
+}
 .final-list li:first-child {
   padding-top: 2px;
 }
@@ -655,6 +721,23 @@ details.card[open] summary::before {
   font-family: var(--font-display);
   color: var(--amber);
   font-size: 1rem;
+}
+.score-section-body > .card {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  transform: none;
+  background: transparent;
+}
+.score-section-body {
+  padding: 0 2px 2px;
+}
+.score-section-body > .card > div:first-child {
+  margin-bottom: 8px;
+}
+.score-section-body .final-list {
+  padding: 0 2px;
 }
 
 /* ---------- 9. Écran révélation — la pièce à conviction ---------- */
@@ -835,6 +918,7 @@ details.card[open] summary::before {
 .player-btn {
   position: relative;
   display: block;
+  animation: card-pop 0.24s var(--ease-out);
   background: linear-gradient(180deg, var(--paper-hi), var(--paper-raised));
   border: 1px solid var(--line-strong);
   border-radius: var(--radius-chip);
@@ -867,9 +951,17 @@ details.card[open] summary::before {
   border-color: var(--amber);
   background: linear-gradient(180deg, var(--paper-hi), #1f2740);
   box-shadow: 0 8px 18px -10px rgba(217, 164, 65, 0.35);
+  transform: translateY(-1px) scale(1.01);
 }
 .player-btn[data-pid]:active {
   transform: rotate(0deg) translateY(1px) scale(0.97);
+}
+
+.player-btn[data-pid]:focus-visible,
+.player-btn[data-pid]:focus {
+  outline: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .player-btn.dead {

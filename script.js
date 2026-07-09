@@ -405,7 +405,6 @@ function scoresBlockHTML() {
                           .join("")}
                     </ul>
                 </div>
-                <button type="button" class="btn ghost" id="btnResetScores">Terminer la partie</button>
             `;
 }
 
@@ -678,12 +677,6 @@ function renderResult() {
                     <div class="player-name-big">${esc(p.name)}</div>
                     <div>a été éliminé(e) !</div>
                     <div class="result-role ${roleClass}">${roleLabel(p.role).toUpperCase()}</div>
-                    ${
-                      p.role !== "mrwhite"
-                        ? `
-                    <div class="word-hint" style="margin-top:8px;">Son mot était : <b>${esc(p.word)}</b></div>`
-                        : ""
-                    }
 
                     ${
                       game.guess_info
@@ -730,7 +723,7 @@ function renderEnd() {
     .sort((a, b) => roundScores[b] - roundScores[a]);
   const app = document.getElementById("app");
   app.innerHTML = `
-                <div class="card center-text">
+                <section class="card center-text" style="margin-bottom: 12px;">
                     <div class="win-banner">
                         ${
                           game.winner === "civils"
@@ -745,10 +738,10 @@ function renderEnd() {
                         &nbsp;•&nbsp;
                         Mot des undercover : <b>${esc(game.undercover_word)}</b>
                     </div>
-                </div>
+                </section>
 
-                <div class="card">
-                    <div style="font-weight:700;margin-bottom:8px;">Classement de la manche</div>
+                <section class="card" style="margin-bottom: 12px;">
+                    <div class="section-title">Classement de la manche</div>
                     <ul class="final-list">
                         ${order
                           .map((i) => {
@@ -765,12 +758,20 @@ function renderEnd() {
                           })
                           .join("")}
                     </ul>
-                </div>
+                </section>
 
-                ${scoresBlockHTML()}
+                <section class="card" style="margin-bottom: 12px;">
+                    <div class="section-title">Classement actuel</div>
+                    <div class="score-section-body">
+                        ${scoresBlockHTML()}
+                    </div>
+                </section>
 
-                <button type="button" class="btn" id="btnReset">Nouvelle partie (mêmes joueurs)</button>
-                <button type="button" class="btn secondary" id="btnChangeSetup">Changer les joueurs / paramètres</button>
+                <section class="actions-stack">
+                    <button type="button" class="btn ghost" id="btnResetScores">Terminer la partie</button>
+                    <button type="button" class="btn" id="btnReset">Nouvelle partie (mêmes joueurs)</button>
+                    <button type="button" class="btn secondary" id="btnChangeSetup">Changer les joueurs / paramètres</button>
+                </section>
             `;
   document.getElementById("btnReset").addEventListener("click", actionReset);
   document
