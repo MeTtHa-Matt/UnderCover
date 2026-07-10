@@ -259,7 +259,7 @@ const WORD_PAIRS = [
   ["Banque", "Poste"],
   ["Cinéma", "Théâtre"],
   ["Hôpital", "Clinique"],
-  ["Piscine", "Océan"],
+  ["Piscine", "Spa"],
   ["École", "Université"],
   ["Église", "Mosquée"],
   ["Musée", "Galerie"],
@@ -506,4 +506,457 @@ const WORD_PAIRS = [
   ["Cuir", "Daim"],
   ["Laine", "Coton"],
   ["Diamant", "Rubis"],
+
+  // 🍽️ Nourriture supplémentaire
+  ["Sandwich", "Wrap"],
+  ["Nachos", "Tortillas"],
+  ["Ravioli", "Tortellini"],
+  ["Falafel", "Houmous"],
+  ["Bagel", "Muffin"],
+  ["Churros", "Beignets"],
+  ["Macaron", "Meringue"],
+  ["Flan", "Crème brûlée"],
+  ["Tiramisu", "Panna cotta"],
+  ["Pho", "Bo bun"],
+  ["Yakitori", "Brochette"],
+  ["Guacamole", "Salsa"],
+  ["Burrito", "Quesadilla"],
+  ["Hot-dog", "Sandwich chaud"],
+  ["Escargot", "Cuisse de grenouille"],
+  ["Foie gras", "Pâté"],
+  ["Cassoulet", "Pot-au-feu"],
+  ["Bouillabaisse", "Soupe de poisson"],
+  ["Bibimbap", "Riz sauté"],
+  ["Dim sum", "Nem"],
+  ["Pretzel", "Biscuit salé"],
+  ["Granité", "Sorbet"],
+  ["Thé glacé", "Limonade"],
+  ["Cappuccino", "Café latte"],
+  ["Espresso", "Ristretto"],
+  ["Chocolat chaud", "Café au lait"],
+  ["Confit de canard", "Magret"],
+  ["Andouillette", "Boudin"],
+  ["Merguez", "Chipolata"],
+  ["Quiche", "Tarte salée"],
+  ["Gratin", "Purée"],
+  ["Velouté", "Potage"],
+
+  // 🍇 Fruits & légumes supplémentaire
+  ["Grenade", "Figue"],
+  ["Datte", "Abricot sec"],
+  ["Nectarine", "Pêche"],
+  ["Clémentine", "Satsuma"],
+  ["Physalis", "Groseille à maquereau"],
+  ["Poireau", "Céleri"],
+  ["Panais", "Rutabaga"],
+  ["Chou", "Chou de Bruxelles"],
+  ["Haricot vert", "Petit pois"],
+  ["Maïs", "Blé"],
+  ["Lentille", "Pois chiche"],
+  ["Cacahuète", "Noix de cajou"],
+  ["Noix", "Noisette"],
+  ["Amande", "Pistache"],
+  ["Fenouil", "Artichaut"],
+
+  // 🐾 Animaux supplémentaire
+  ["Furet", "Belette"],
+  ["Lynx", "Puma"],
+  ["Hyène", "Chacal"],
+  ["Bouquetin", "Chamois"],
+  ["Marmotte", "Blaireau"],
+  ["Vautour", "Charognard"],
+  ["Corbeau", "Corneille"],
+  ["Pélican", "Cormoran"],
+  ["Toucan", "Perroquet ara"],
+  ["Colibri", "Moineau"],
+  ["Anguille", "Murène"],
+  ["Raie", "Requin-marteau"],
+  ["Hippocampe", "Poisson-clown"],
+  ["Étoile de mer", "Oursin"],
+  ["Crabe", "Bernard-l'ermite"],
+  ["Ver de terre", "Sangsue"],
+  ["Mille-pattes", "Cloporte"],
+  ["Puce", "Tique"],
+  ["Cigale", "Criquet"],
+  ["Sauterelle", "Grillon"],
+  ["Otarie", "Phoque"],
+  ["Morse", "Narval"],
+  ["Ornithorynque", "Échidné"],
+  ["Wombat", "Opossum"],
+  ["Paresseux", "Tatou"],
+  ["Merle", "Rossignol"],
+  ["Pigeon", "Tourterelle"],
+  ["Autruche", "Émeu"],
+
+  // 🚗 Transports supplémentaire
+  ["Caravane", "Camping-car"],
+  ["Quad", "Buggy"],
+  ["Traîneau", "Luge"],
+  ["Téléski", "Télésiège"],
+  ["Pirogue", "Canoë"],
+  ["Jet-ski", "Scooter des mers"],
+  ["Porte-avions", "Cuirassé"],
+  ["Zeppelin", "Dirigeable"],
+  ["Chariot élévateur", "Grue"],
+  ["Corbillard", "Fourgon funéraire"],
+
+  // 📱 Technologie supplémentaire
+  ["Discord", "Slack"],
+  ["Reddit", "Forum"],
+  ["Twitch", "YouTube Gaming"],
+  ["Pinterest", "Instagram"],
+  ["Airbnb", "Booking"],
+  ["PayPal", "Venmo"],
+  ["Netflix", "Disney+"],
+  ["Alexa", "Siri"],
+  ["Robot aspirateur", "Aspirateur balai"],
+  ["Disque dur", "Clé USB"],
+  ["Carte graphique", "Processeur"],
+  ["Écran", "Moniteur"],
+  ["Routeur", "Modem"],
+  ["VPN", "Proxy"],
+
+  // 🌦️ Nature supplémentaire
+  ["Roche", "Caillou"],
+  ["Falaise", "Ravin"],
+  ["Plaine", "Plateau"],
+  ["Marais", "Marécage"],
+  ["Récif", "Corail"],
+  ["Geyser", "Source chaude"],
+  ["Stalactite", "Stalagmite"],
+  ["Mousson", "Sécheresse"],
+  ["Permafrost", "Toundra"],
+  ["Écosystème", "Biotope"],
+
+  // 🏅 Sports supplémentaire
+  ["Rugby à XV", "Rugby à VII"],
+  ["Cricket", "Baseball"],
+  ["Squash", "Padel"],
+  ["Biathlon", "Ski de fond"],
+  ["Bobsleigh", "Luge de course"],
+  ["Trampoline", "Gymnastique"],
+  ["Fitness", "Crossfit"],
+  ["Motocross", "Rallye"],
+  ["Voile", "Planche à voile"],
+  ["Skateboard", "BMX"],
+  ["Free-fight", "Boxe thaï"],
+  ["Tir sportif", "Chasse"],
+
+  // 💼 Métiers supplémentaire
+  ["Steward", "Hôtesse de l'air"],
+  ["Sage-femme", "Gynécologue"],
+  ["Ostéopathe", "Kinésithérapeute"],
+  ["Serrurier", "Vitrier"],
+  ["Peintre en bâtiment", "Décorateur"],
+  ["Chauffeur", "Livreur"],
+  ["Éboueur", "Agent d'entretien"],
+  ["Astronome", "Physicien"],
+  ["Biologiste", "Botaniste"],
+  ["Géologue", "Archéologue"],
+  ["Diplomate", "Ambassadeur"],
+  ["Analyste financier", "Trader"],
+  ["Community manager", "Influenceur"],
+  ["Designer", "Graphiste"],
+  ["Développeur", "Programmeur"],
+
+  // 🏙️ Lieux supplémentaire
+  ["Skatepark", "Terrain de basket"],
+  ["Patinoire", "Bowling"],
+  ["Karting", "Circuit automobile"],
+  ["Aquarium", "Parc animalier"],
+  ["Planétarium", "Observatoire"],
+  ["Amphithéâtre", "Arène"],
+  ["Monastère", "Abbaye"],
+  ["Chapelle", "Cathédrale"],
+  ["Forteresse", "Citadelle"],
+  ["Moulin", "Fabrique"],
+  ["Marina", "Quai"],
+  ["Barrage", "Centrale électrique"],
+
+  // 🌍 Pays supplémentaire
+  ["Suisse", "Liechtenstein"],
+  ["Pays-Bas", "Luxembourg"],
+  ["Turquie", "Grèce"],
+  ["Iran", "Irak"],
+  ["Vietnam", "Laos"],
+  ["Thaïlande", "Cambodge"],
+  ["Chili", "Pérou"],
+  ["Colombie", "Venezuela"],
+  ["Kenya", "Éthiopie"],
+  ["Sénégal", "Côte d'Ivoire"],
+
+  // 🏛️ Villes supplémentaire
+  ["Lyon", "Toulouse"],
+  ["Bordeaux", "Nantes"],
+  ["Lisbonne", "Porto"],
+  ["Vienne", "Budapest"],
+  ["Prague", "Varsovie"],
+  ["Moscou", "Saint-Pétersbourg"],
+  ["Pékin", "Shanghai"],
+  ["Bangkok", "Hanoï"],
+  ["Rio de Janeiro", "São Paulo"],
+  ["Montréal", "Toronto"],
+
+  // 🎬 Divertissement supplémentaire
+  ["Mangas", "Comics"],
+  ["Anime", "Dessin animé"],
+  ["Court-métrage", "Long-métrage"],
+  ["Documentaire", "Reportage"],
+  ["Sitcom", "Série dramatique"],
+  ["Thriller", "Policier"],
+  ["Science-fiction", "Fantastique"],
+  ["Horreur", "Épouvante"],
+  ["Western", "Aventure"],
+  ["Musical", "Comédie musicale"],
+  ["Stand-up", "One-man-show"],
+  ["Cascadeur", "Doublure"],
+
+  // 🎮 Jeux vidéo supplémentaire
+  ["League of Legends", "Dota"],
+  ["Call of Duty", "Battlefield"],
+  ["The Sims", "Animal Crossing"],
+  ["Roblox", "Minecraft"],
+  ["Among Us", "Loup-garou"],
+  ["Candy Crush", "Bejeweled"],
+  ["Tetris", "Puzzle"],
+  ["Zelda", "Final Fantasy"],
+
+  // 🎵 Musique supplémentaire
+  ["R&B", "Soul"],
+  ["Country", "Folk"],
+  ["Disco", "Funk"],
+  ["K-pop", "J-pop"],
+  ["Chorale", "Orchestre"],
+  ["Concert live", "Album studio"],
+  ["Microphone", "Enceinte de scène"],
+  ["Métronome", "Accordeur"],
+
+  // 🧑‍🎓 École supplémentaire
+  ["Rentrée scolaire", "Vacances"],
+  ["Diplôme", "Certificat"],
+  ["Bourse d'études", "Prêt étudiant"],
+  ["Colle", "Retenue"],
+  ["Internat", "Externat"],
+
+  // 🎉 Fêtes supplémentaire
+  ["Confettis", "Serpentins"],
+  ["Ballon", "Guirlande"],
+  ["Cadeau", "Carte de vœux"],
+  ["Bougie d'anniversaire", "Gâteau d'anniversaire"],
+  ["Cotillons", "Pétards"],
+
+  // 😀 Émotions supplémentaire
+  ["Nostalgie", "Regret"],
+  ["Espoir", "Optimisme"],
+  ["Solitude", "Isolement"],
+  ["Curiosité", "Émerveillement"],
+  ["Culpabilité", "Remords"],
+
+  // 🧍 Corps supplémentaire
+  ["Poignet", "Cheville"],
+  ["Sourcil", "Cil"],
+  ["Peau", "Muscle"],
+  ["Foie", "Rein"],
+  ["Estomac", "Intestin"],
+
+  // 👕 Vêtements supplémentaire
+  ["Maillot de bain", "Combinaison de plongée"],
+  ["Pyjama", "Chemise de nuit"],
+  ["Peignoir", "Robe de chambre"],
+  ["Salopette", "Combinaison"],
+  ["Bermuda", "Short"],
+  ["Doudoune", "Anorak"],
+  ["Chaussettes", "Collants"],
+  ["Débardeur", "T-shirt"],
+
+  // 🛋️ Maison supplémentaire
+  ["Cheminée", "Poêle à bois"],
+  ["Balcon", "Terrasse"],
+  ["Grenier", "Cave"],
+  ["Garage", "Abri de jardin"],
+  ["Volet", "Fenêtre"],
+  ["Sonnette", "Interphone"],
+  ["Coussin", "Plaid"],
+  ["Vaisselle", "Couverts"],
+
+  // ✍️ Objets supplémentaire
+  ["Agrafeuse", "Perforatrice"],
+  ["Trombone", "Épingle"],
+  ["Enveloppe", "Timbre"],
+  ["Calculatrice", "Boulier"],
+  ["Loupe", "Jumelles"],
+  ["Torche", "Lampe de poche"],
+
+  // 🎨 Couleurs supplémentaire
+  ["Marron", "Chocolat"],
+  ["Indigo", "Bleu marine"],
+  ["Corail", "Saumon"],
+  ["Bordeaux", "Grenat"],
+
+  // ⚙️ Matériaux supplémentaire
+  ["Béton", "Ciment"],
+  ["Marbre", "Granit"],
+  ["Céramique", "Porcelaine"],
+  ["Titane", "Aluminium"],
+
+  // 💰 Argent & finance
+  ["Bourse", "Marché financier"],
+  ["Crédit", "Débit"],
+  ["Action", "Obligation"],
+  ["Bitcoin", "Ethereum"],
+  ["Espèces", "Carte bancaire"],
+  ["Économie", "Épargne"],
+
+  // 🕰️ Temps
+  ["Matin", "Après-midi"],
+  ["Semaine", "Mois"],
+  ["Aube", "Crépuscule"],
+  ["Minute", "Seconde"],
+  ["Passé", "Futur"],
+
+  // 🏥 Santé
+  ["Fièvre", "Rhume"],
+  ["Vaccin", "Médicament"],
+  ["Pansement", "Bandage"],
+  ["Béquille", "Fauteuil roulant"],
+  ["Thermomètre", "Tensiomètre"],
+  ["Sirop", "Comprimé"],
+
+  // 🌐 Internet & jargon
+  ["Émoji", "Sticker"],
+  ["Hashtag", "Mention"],
+  ["Story", "Post"],
+  ["Influenceur", "Youtubeur"],
+  ["Meme", "GIF"],
+
+  // 🏞️ Activités de loisir
+  ["Pêche", "Chasse"],
+  ["Randonnée", "Trekking"],
+  ["Puzzle", "Sudoku"],
+  ["Origami", "Scrapbooking"],
+  ["Poterie", "Sculpture"],
+  ["Peinture", "Dessin"],
+  ["Photographie", "Vidéographie"],
+  ["Jardinage", "Bricolage"],
+
+  // 🧩 Jeux traditionnels
+  ["Échecs", "Dames"],
+  ["Dominos", "Cartes"],
+  ["Mikado", "Jenga"],
+  ["Loto", "Bingo"],
+  ["Cache-cache", "Colin-maillard"],
+  ["Corde à sauter", "Élastique"],
+  ["Marelle", "Billes"],
+
+  // 🚀 Sciences & tech supplémentaire
+  ["Intelligence artificielle", "Robotique"],
+  ["Nanotechnologie", "Biotechnologie"],
+  ["Énergie solaire", "Énergie éolienne"],
+  ["Réacteur nucléaire", "Centrale hydraulique"],
+  ["ADN", "ARN"],
+  ["Atome", "Molécule"],
+
+  // 🧴 Beauté & hygiène
+  ["Shampoing", "Après-shampoing"],
+  ["Savon", "Gel douche"],
+  ["Parfum", "Déodorant"],
+  ["Rasoir", "Tondeuse"],
+  ["Rouge à lèvres", "Gloss"],
+  ["Vernis à ongles", "Dissolvant"],
+
+  // 🍹 Boissons supplémentaire
+  ["Eau gazeuse", "Eau plate"],
+  ["Cocktail", "Mocktail"],
+  ["Sirop", "Soda"],
+  ["Infusion", "Tisane"],
+
+  // 📚 Littérature
+  ["Roman policier", "Roman d'amour"],
+  ["Poésie", "Théâtre"],
+  ["Autobiographie", "Biographie"],
+  ["Conte", "Fable"],
+  ["Nouvelle", "Essai"],
+
+  // 🕹️ Divers
+  ["Casino", "Loterie"],
+  ["Cirque", "Spectacle de rue"],
+  ["Marionnette", "Théâtre d'ombres"],
+  ["Feu de camp", "Barbecue"],
+  ["Igloo", "Cabane"],
+  ["Tente", "Yourte"],
+  ["Hamac", "Chaise longue"],
+
+  // 🎭 Traits de personnalité
+  ["Optimiste", "Pessimiste"],
+  ["Introverti", "Extraverti"],
+  ["Timide", "Audacieux"],
+  ["Généreux", "Avare"],
+  ["Patient", "Impatient"],
+  ["Calme", "Nerveux"],
+  ["Honnête", "Menteur"],
+  ["Curieux", "Indifférent"],
+
+  // 🌡️ Climat & météo supplémentaire
+  ["Canicule", "Vague de froid"],
+  ["Humidité", "Sécheresse"],
+  ["Climat tropical", "Climat polaire"],
+  ["Saison sèche", "Saison des pluies"],
+
+  // 🏗️ Bâtiment & construction
+  ["Chantier", "Échafaudage"],
+  ["Grue", "Bétonnière"],
+  ["Fondations", "Charpente"],
+  ["Isolation", "Étanchéité"],
+
+  // 🎪 Cirque & spectacle
+  ["Trapéziste", "Funambule"],
+  ["Dompteur", "Dresseur"],
+  ["Jongleur", "Acrobate"],
+  ["Contorsionniste", "Équilibriste"],
+
+  // 🧵 Couture & artisanat
+  ["Aiguille", "Fil"],
+  ["Machine à coudre", "Tricot"],
+  ["Bouton", "Fermeture éclair"],
+  ["Tissu", "Cuir synthétique"],
+
+  // 🏛️ Société & institutions
+  ["Démocratie", "République"],
+  ["Élection", "Référendum"],
+  ["Loi", "Règlement"],
+  ["Impôt", "Taxe"],
+  ["Grève", "Manifestation"],
+  ["Syndicat", "Association"],
+
+  // 🧭 Géographie physique
+  ["Continent", "Île"],
+  ["Hémisphère", "Équateur"],
+  ["Latitude", "Longitude"],
+  ["Frontière", "Douane"],
+  ["Capitale", "Métropole"],
+
+  // 🐉 Créatures fantastiques
+  ["Gobelin", "Troll"],
+  ["Centaure", "Minotaure"],
+  ["Golem", "Gargouille"],
+  ["Djinn", "Génie"],
+
+  // 🧠 Psychologie & concepts
+  ["Mémoire", "Concentration"],
+  ["Créativité", "Imagination"],
+  ["Logique", "Intuition"],
+  ["Conscience", "Inconscient"],
+
+  // 🍂 Agriculture
+  ["Récolte", "Semis"],
+  ["Élevage", "Pâturage"],
+  ["Serre", "Champ"],
+  ["Irrigation", "Arrosage"],
+  ["Pesticide", "Engrais"],
+
+  // 🎖️ Vocabulaire militaire général
+  ["Soldat", "Officier"],
+  ["Char d'assaut", "Blindé"],
+  ["Uniforme", "Treillis"],
+  ["Caserne", "Base militaire"],
 ];
